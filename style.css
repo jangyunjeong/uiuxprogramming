@@ -158,6 +158,25 @@ input:focus{
 button:active{
     transform: translateY(1px);
 }
+#subscribeMessage{
+    margin-top: 16px;
+    color :#555763;
+}
+
+#subscribeMessage.is-success{
+    color:#000000;
+    background-color: #c2d8ec;
+    padding:12px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+#subscribeButton:disabled{
+    color : #ffffff;
+    background-color: #a8a8b2;
+    cursor: not-allowed;
+
+}
 
 /* 웹 페이지가 표시되는 가로폭이 768 알때만 적용*/
 @media (max-width:768px) {
@@ -211,5 +230,5 @@ button:active{
         min-height: 48px;
     }
     
-    
 }
+

@@ -65,11 +65,14 @@
         </section>
         <section id="subscribe" class="subscribe-card">
             <h2>훈련 소식을 메일로 받아보세요!!</h2>
-            <form>
+            <form id="subscribe-form">
                 <label for = "email">이메일</label>
                 <input type="email" id="email" name="email">
-                <button type="submit">신청하기</button>
+                <button id="subscribeButton" type="submit">신청하기</button>
             </form>
+            <p id="subscribeMessage" aria-live="polite">
+                이메일을 입력한 뒤 신청해주세요.
+            </p>
         </section>
     </main>
 
@@ -77,6 +80,6 @@
         <small>2026 UI/UX 훈련</small>
     </footer>
 
-
+    <script src="script.js"></script>
 </body>
 </html>
