@@ -38,20 +38,92 @@
 
         <section id="features">
             <h2>훈련 방법</h2>
-            <ul class="features-list">
-                <li class="feature-card">
-                    <h3>실습진행</h3>
-                    <p>수업에 따라 실습 진행 한다</p>
-                </li>
-                <li class="feature-card">
-                    <h3>복습진행</h3>
-                    <p>수업이 끝난 후 복습을 진행한다</p>
-                </li>
-                <li class="feature-card">
-                    <h3>git 훈련</h3>
-                    <p>처음 써보는 git을 이해한다</p>
-                </li>
-            </ul>
+            <div class="tabs" role="tablist" aria-label="기능선택">
+                <button 
+                    id="tab-practice" 
+                    class="tab is-active" 
+                    type="button" 
+                    role="tab" 
+                    aria-selected="true" 
+                    aria-controls="feature-practice" 
+                    data-target="feature-practice">
+                    실습진행
+                </button>
+
+                <button 
+                    id="tab-audience" 
+                    class="tab" 
+                    type="button" 
+                    role="tab" 
+                    aria-selected="false" 
+                    aria-controls="feature-audience" 
+                    data-target="feature-audience">
+                    복습진행 
+                </button>
+
+                <button 
+                    id="tab-feedback" 
+                    class="tab" 
+                    type="button" 
+                    role="tab" 
+                    aria-selected="false" 
+                    aria-controls="feature-feedback" 
+                    data-target="feature-feedback">
+                    git 훈련 
+                </button>
+            </div>
+            <div 
+                id="feature-practice"
+                class="panel is-active"
+                role="tabpanel"
+                aria-labelledby="tab-practice" >
+                <h3>실습진행</h3>
+                <p>수업에 따라 실습 진행 한다</p>
+            </div>
+            <div 
+                id="feature-audience"
+                class="panel"
+                role="tabpanel"
+                aria-labelledby="tab-audience" 
+                hidden >
+                <h3>복습진행</h3>
+                <p>수업에 따라 복습을 진행한다</p>
+            </div>
+
+            <div 
+                id="feature-feedback"
+                class="panel"
+                role="tabpanel"
+                aria-labelledby="tab-feedback" 
+                hidden>
+                <h3>git 훈련</h3>
+                <p>처음 써보는 git을 이해한다</p>
+            </div> 
+        </section>
+        <section id="event-pratcice">
+            <h2>소식받기 설정</h2>
+            <div class="event-grid">
+                <article class="event-card">
+                    <h3>화면 테마</h3>
+                    <button id="themeButton" type="button">다크로 바꾸기</button>
+                </article>
+                <article class="event-card">
+                    <h3>수신자 정보</h3>
+                    <label for="nickName">이름입력</label>
+                    <input type="text" id="nickName" maxlength="10">
+                    <p id="nicknameCount" aria-live="polite">0/10</p>
+                </article>
+                <article class="event-card">
+                    <h3>수신동의여부 </h3>
+                    <label class="agree-row">
+                        <input type="checkbox" id="agreeCheck">
+                        문자/이메일 광고 수신 동의합니다.
+                    </label>
+                    <p id="agreeMessage"  aria-live="polite">동의 후 메일/문자를 받을 수 있습니다.</p>
+                    <button id="startButton" type="button" disabled>훈련시작하기</button>
+                    
+                </article>
+            </div>
         </section>
         <section id="stops">
             <h2>훈련 순서</h2>
@@ -64,7 +136,7 @@
             </ol>
         </section>
         <section id="subscribe" class="subscribe-card">
-            <h2>훈련 소식을 메일로 받아보세요!!</h2>
+            <h2>훈련 소식을 메일로 받아보세요.</h2>
             <form id="subscribe-form">
                 <label for = "email">이메일</label>
                 <input type="email" id="email" name="email">
