@@ -117,13 +117,64 @@
                     <h3>수신동의여부 </h3>
                     <label class="agree-row">
                         <input type="checkbox" id="agreeCheck">
-                        문자/이메일 광고 수신 동의합니다.
+                        <p aria-live="polite">문자/이메일 광고 수신 동의합니다.</p>
                     </label>
                     <p id="agreeMessage"  aria-live="polite">동의 후 메일/문자를 받을 수 있습니다.</p>
-                    <button id="startButton" type="button" disabled>훈련시작하기</button>
+                    <button id="startButton" type="button" disabled>수신동의</button>
                     
                 </article>
             </div>
+        </section>
+        <dialog id="recording-dialog" aria-labelledby="recording-title" aria-describedby="recording-description">
+            <h2 id="recording-title">문자/이메일 선택</h2>
+            <p id="recording-description" aria-live="polite">문자/이메일 둘 중 하나 선택해서 받을 수 있습니다.</p>
+            <div class="dialog-actions">
+                <button id="recording-cancel" type="button">돌아가기</button>
+                <button id="recording-confirm" type="button">이메일로 받기</button>
+                <button id="recording-confirm2" type="button">문자로 받기</button>
+            </div>
+        </dialog>
+
+        <section id="training-flow" class="training-flow" hidden>
+            <h2>핸드폰 정보를 입력해주세요</h2>
+            <p class="progress" aria-label="실행진행단계">
+                <span class="progress_item">1-핸드폰번호</span>
+                <span class="progress_item">2-정보확인</span>
+                <span class="progress_item">3-설정완료</span>
+            </p>
+            <section class="step" data-step="1" hidden>
+                <label for="presentation-title">핸드폰 번호</label>
+                <input id="presentation-title" type="text" placeholder=" - 없이 입력 " aria-describedby="title-arror" maxlength="11">
+                <p id="title-error" class="error-message" aria-live="polite"></p>
+                <button id="title-next" type="button">확인</button>
+            </section>
+
+            <section class="step" data-step="2" hidden>
+                <h3>입력한 내용을 확인해주세요</h3>
+                <div class="summary-list">
+                    <div><span>핸드폰번호</span><strong id="summary-title"></strong></div>
+                </div>
+                <div class="step-actions">
+                    <button id="summary-prev" type="button">수정하기</button>
+                    <button id="finish-button" type="button">설정 완료하기</button>
+                </div>
+            </section>
+            <section class="step" data-step="3" hidden>
+                <h3>문자 설정이 완료 되었습니다.</h3>
+                <p>수정이 필요하면 "다시 설정하기" 버튼을 눌러주세요.</p>
+                <button id="restart-button" type="button">다시 설정하기</button>
+            </section>
+        </section>
+        <dialog id="recoding-dialog" aria-labelledby="recoding-title" aria-describedby="recoding-description">
+            <h2 id="recoding-title">녹음활용안내</h2>
+            <p id="recoding-description">휸련조건 설정하여 녹음은 시작도지 안흡니다.</p>
+            <div class="dialog-actions">
+                <button id="recoding-cancel" type="button"> 돌아가기</button>
+                <button id="recoding-confirm" type="button"> 동의하고 시작하기</button>
+
+            </div>
+        </dialog>
+
         </section>
         <section id="stops">
             <h2>훈련 순서</h2>
@@ -135,7 +186,7 @@
                 <li>진행한 실습을 git에 올린다</li>
             </ol>
         </section>
-        <section id="subscribe" class="subscribe-card">
+        <section id="subscribe" class="subscribe-card" hidden>
             <h2>훈련 소식을 메일로 받아보세요.</h2>
             <form id="subscribe-form">
                 <label for = "email">이메일</label>
