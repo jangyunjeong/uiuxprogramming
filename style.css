@@ -129,6 +129,13 @@ input{
     border: 1px solid #b8b7c5;
     border-radius: 10px;
 }
+textarea{
+    flex: 1;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid #b8b7c5;
+    border-radius: 10px;
+}
 button{
     padding: 12px 18px;
     border: 0;
@@ -140,7 +147,8 @@ button{
 }
 
 input,
-button{
+button,
+textarea{
     font:inherit;
 
 }
@@ -150,7 +158,8 @@ button:hover{
 }
 
 button:focus,
-input:focus{
+input:focus,
+textarea:focus{
     outline: 3px solid #b9b5ff;
     outline-offset: 2px;
 }
@@ -317,7 +326,7 @@ body.dark .panel{
 }
 
 #recording-dialog::backdrop{background: rgb(30,20,39, .6);}
-#recording-dialog .dialog-action{
+#recording-dialog .dialog-actions{
     display: flex;
     gap: 12px;
     justify-content: flex-end;
@@ -370,6 +379,14 @@ body.dark #recording-dialog{
     border-bottom: 1px solid #deddea;
 
 }
+
+.feedBackList > div{
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid #deddea;
+}
 .training-flow .step-actions{
     display: flex;
     gap: 12px;
@@ -381,6 +398,55 @@ body.dark .training-flow{
     border-color: #2d2e38;
 }
 
+.feedBack-section{
+    padding: 24px;
+    border: 1px solid #deddea;
+    border-radius: 24px;
+    background-color: #ffffff;
+    justify-content: flex-end;
+
+}
+
+#feedBack-dialog{
+    width: min(520px,calc(100% - 32px));
+    max-width: none;
+    padding: 24px;
+    border: 1px solid #deddea;
+    border-radius: 12px;
+    background : #ffffff;
+    color: #27232c;
+
+}
+#feedBack-dialog #feedBackList{
+    min-height: 20px;
+}
+
+#email-popup{
+    width: min(520px,calc(100% - 32px));
+    max-width: none;
+    padding: 24px;
+    border: 1px solid #deddea;
+    border-radius: 12px;
+    background : #ffffff;
+    color: #27232c;
+
+}
+
+.buttonClass{
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+.feedBack-section .feedBack-message{
+    min-height: 24px;
+    color:#9d243d;
+    font-weight: 700;
+
+}
+
+
+#feedBack-dialog::backdrop{background: rgb(30,20,39, .6);}
 /* 웹 페이지가 표시되는 가로폭이 768 알때만 적용*/
 @media (max-width:768px) {
 
@@ -454,6 +520,13 @@ body.dark .training-flow{
     }
     #recording-dialog .dialog-actions{margin : 1px;}
     
+    textarea{
+        width : 100%
+    }
+
+    .radioDiv{
+      display: flex;  
+    }
 }
 
 

@@ -249,7 +249,6 @@ titleNext.addEventListener("click", () => {
 
 summaryPrev.addEventListener("click", () => {showStep(0);});
 finishButton.addEventListener("click", () => {
-    console.log("2222");
     showStep(2);
 });
 restartButton.addEventListener("click", () => {
@@ -270,4 +269,70 @@ restartButton.addEventListener("click", () => {
     //summaryQna.textContent = "";
     showStep(0);
 
+});
+
+
+/* 중간고사 시작 */
+const feedBackButton = document.querySelector("#feedBackButton");
+const feedBackDialog = document.querySelector("#feedBack-dialog");
+const dialogNickName = document.querySelector("#dialog-nickName");
+const dialogFunction = document.querySelector("#dialog-function");
+const dialogfeedBack = document.querySelector("#dialog-feedBack");
+
+/**입력폼 */
+const feedBackNickName = document.querySelector("#feedBack-nickName");
+const feedBackfunction = document.querySelector('input[name="feedBack-function"]:checked');
+const feedBackTextarea = document.querySelector("#feedBack-area");
+
+const emailSendPopup = document.querySelector("#emailSend");
+const emailCancel = document.querySelector("#emailCancel");
+const buttonClose = document.querySelector("#buttonClose");
+const emailpopup = document.querySelector("#email-popup");
+const feedBackError = document.querySelector("#feedBack-error");
+
+function feedBackValidation(){
+    const value = feedBackNickName.value.trim();
+    if (value == ""){
+        feedBackError.textContent = "닉네임을 입력하세요.";
+        feedBackNickName.focus();
+        return false;
+    }
+
+    const textareaValue = feedBackTextarea.value.trim();
+    if(textareaValue == ""){
+        feedBackError.textContent = "피드백을 입력하세요.";
+        feedBackTextarea.focus();
+        return false;
+    }
+    feedBackError.textContent = "";
+    return true;
+    
+}
+feedBackButton.addEventListener("click", () => {
+    if(!feedBackValidation()) return false;
+    feedBackDialog.showModal();
+    dialogNickName.textContent = feedBackNickName.value;
+    dialogFunction.textContent = document.querySelector('input[name="feedBack-function"]:checked').value+"점";
+    dialogfeedBack.textContent = feedBackTextarea.value;
+});
+
+emailSendPopup.addEventListener("click", () => {
+    feedBackDialog.close();
+    emailpopup.showModal();
+});
+
+emailCancel.addEventListener("click", () => {
+    feedBackDialog.close();
+});
+
+buttonClose.addEventListener("click", () => {
+    /**전부 초기화 */
+    emailpopup.close();
+    feedBackNickName.value = "";
+    feedBackfunction.checked = "5";
+    feedBackTextarea.value = "";
+    dialogNickName.textContent = "";
+    dialogFunction.textContent = "";
+    dialogfeedBack.textContent = "";
+    
 });

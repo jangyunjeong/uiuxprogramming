@@ -161,7 +161,7 @@
             </section>
             <section class="step" data-step="3" hidden>
                 <h3>문자 설정이 완료 되었습니다.</h3>
-                <p>수정이 필요하면 "다시 설정하기" 버튼을 눌러주세요.</p>
+                <p>수정이 필요하면 "다시 설정하기" 버튼을 눌러주세요.   </p>
                 <button id="restart-button" type="button">다시 설정하기</button>
             </section>
         </section>
@@ -197,8 +197,46 @@
                 이메일을 입력한 뒤 신청해주세요.
             </p>
         </section>
+        <section id="feedBack-section" class="feedBack-section">
+            <h2>이 사이트에 대한 피드백을 남겨주세요.</h2>
+            <h2>피드백을 적고 저장을 누르면 만든 사람에게 메일이 갑니다.</h2>
+            <h3>닉네임을 적어주세요</h3>
+            <input type="text" id="feedBack-nickName"><br>
+            <h3>기능 평가</h3>
+            <div class="radioDiv">
+                <input type="radio" name="feedBack-function" value="1" checked>1점
+                <input type="radio" name="feedBack-function" value="2">2점
+                <input type="radio" name="feedBack-function" value="3">3점
+                <input type="radio" name="feedBack-function" value="4">4점
+                <input type="radio" name="feedBack-function" value="5">5점
+            </div>
+            <h3>피드백 적어주세요. </h3>
+            <textarea id="feedBack-area" name="feedBack-area" cols="100" rows="10"></textarea>
+            <p id="feedBack-error" class="feedBack-message" ></p>
+            <div class="buttonClass">
+                <button id="feedBackButton" class="submitButton" type="button">저장하기</button>
+            </div>
+        
+        </section>
+        <dialog id="feedBack-dialog">
+            <h2>입력한 내용 확인</h2>
+            <div class="feedBackList">
+                <div><span>닉네임</span><strong id="dialog-nickName"></strong></div>
+                <div><span>기능점수</span><strong id="dialog-function"></strong></div>
+                <div><span>피드백내용</span><strong id="dialog-feedBack"></strong></div>
+            </div>
+            <div class="buttonClass">
+                <button id="emailSend" type="button" class="submitButton">이메일로 보내기 </button>
+                <button id="emailCancel" type="button" class="submitButton">수정하기 </button>
+            </div>
+        </dialog>
+        <dialog id="email-popup">
+            <h2>이메일 보내기 성공했습니다.</h2>
+            <div class="buttonClass">
+                <button id="buttonClose" type="button">닫기 </button>
+            </div>
+        </dialog>
     </main>
-
     <footer>
         <small>2026 UI/UX 훈련</small>
     </footer>
