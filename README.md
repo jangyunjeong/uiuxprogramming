@@ -23,6 +23,12 @@
    - '새 훈련 신청하기' 버튼 클릭 시 첫번쨰 입력폼으로 이동
    - form에 있는 모든 내용을 초기화 했습니다.
 
+4. 모바일 테스트
+   - 모바일도 pc와 방법은 동일하게 진행합니다.
+   - 모바일에서는 버튼과 라디오버튼, input 텍스트가 잘리지 않는지 확인했고 
+     어색한 부분이 없도록 처리해보았습니다.
+     
+
 
  ## 배포 웹페이지 주소
     - Github repository url : https://github.com/jangyunjeong/uiuxprogramming
