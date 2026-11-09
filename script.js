@@ -129,10 +129,21 @@ tabs.forEach(function (tab){
 
 const trainingFlow = document.querySelector("#training-flow");
 const flowSteps = document.querySelectorAll(".step");
+const applySteps = document.querySelectorAll(".apply-step");
 const progressItems = document.querySelectorAll(".progress_item");
+const progressApplyItems = document.querySelectorAll(".progress_apply_item");
 const titleInput = document.querySelector("#presentation-title");
 const titleError = document.querySelector("#title-error");
 const titleNext = document.querySelector("#title-next");
+const applyName = document.querySelector("#apply-name");
+const applyPhone = document.querySelector("#apply-phone");
+const applyDate = document.querySelector("#apply-date");
+const applyError = document.querySelector("#apply-error");
+const applyNext = document.querySelector("#apply-next");
+const summaryName = document.querySelector("#summary-name");
+const summaryPhone = document.querySelector("#summary-phone");
+const summaryDate = document.querySelector("#summary-date");
+const summaryHard = document.querySelector("#summary-hard");
 //const durationRange = document.querySelector("#duration-range");
 //const durationValue = document.querySelector("#duration-value");
 //const qnaOption = document.querySelector("#qna-option");
@@ -163,6 +174,15 @@ function showStep(index){
     });    
 }
 
+function applyStep(index){
+      currentStep = index;
+    applySteps.forEach((step,i) => {step.hidden = i !== index;});
+    progressApplyItems.forEach((item,i) => {
+        item.classList.toggle("is-active", i == index);
+        console.log("i"+i+ "/"+index);
+
+    });    
+}
 const recordingDialog = document.querySelector("#recording-dialog");
 const recordingCancel = document.querySelector("#recording-cancel");/** 이메일로 받기 */
 const recordingConfirm2 = document.querySelector("#recording-confirm2");/* 문자로 받기 */
@@ -251,6 +271,8 @@ summaryPrev.addEventListener("click", () => {showStep(0);});
 finishButton.addEventListener("click", () => {
     showStep(2);
 });
+
+
 restartButton.addEventListener("click", () => {
     formData.title = "";
     formData.duration = "";
@@ -336,3 +358,126 @@ buttonClose.addEventListener("click", () => {
     dialogfeedBack.textContent = "";
     
 });
+
+const applyHard = document.querySelector("#apply-hard");
+const hardOptions = document.querySelector("#hard-options");
+const hardRadio = document.querySelectorAll('input[name="hard-radio"]');
+
+
+
+const summaryApplyPrev = document.querySelector("#summary-apply-prev");
+const submitButton = document.querySelector("#submit-button");
+const form = document.querySelector("#apply-form");
+const submitStatus = document.querySelector("#submit-status");
+const restartApplyButton = document.querySelector("#restart-apply-button");
+let currentStep = 1;
+function syncHardOptions(){
+    const open = applyHard.checked;
+    applyHard.setAttribute("aria-expanded",String(open));
+    hardOptions.hidden = !open;
+    hardRadio.forEach((input) =>{
+        input.disabled = !open;
+    });
+}
+applyHard.addEventListener("change", syncHardOptions);
+syncHardOptions();
+
+applyNext.addEventListener("click", () => {
+    if (!applyValidateTitle()) return false;
+    summaryDate.textContent = applyDate.value;
+    summaryName.textContent = applyName.value;
+    summaryPhone.textContent = applyPhone.value;
+    summaryHard.textContent = qnaText();
+    applyStep(1);
+});
+
+summaryApplyPrev.addEventListener("click", () => {
+    applyStep(0);
+});
+applyStep(0);
+let isSubmitting = false;
+function setSubmitStatus(state, message){
+    isSubmitting = state  === "loading";
+    form.setAttribute("aria-busy",String(isSubmitting));
+    submitButton.disabled = isSubmitting;
+    submitButton.textContent = isSubmitting ? "저장하는중" : "계획저장하기";
+    submitStatus.textContent = message;
+    submitStatus.classList.toggle("is-success", state === "success");
+    submitStatus.classList.toggle("has-error", state === "error");
+}
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  setSubmitStatus("loading", "입력한 계획을 저장하고있습니다.");
+  window.setTimeout(() => {
+    setSubmitStatus("success","계획 저장이 완료 되었습니다.");
+    applyStep(2)
+  },800);
+});
+
+function applyValidateTitle() {
+    const name = applyName.value.trim();
+    const phone = applyPhone.value.trim();
+    const date = applyDate.value.trim();
+    
+    applyName.removeAttribute("aria-invalid");
+    applyPhone.removeAttribute("aria-invalid");
+    applyDate.removeAttribute("aria-invalid");
+
+    if (name == ""){
+        applyError.textContent = "이름을 입력해주세요";
+        applyName.focus();
+        applyName.setAttribute("aria-invalid", "true");
+        return false;
+    }
+
+    if(phone == ""){
+        applyError.textContent = "핸드폰번호를 입력해주세요";
+        applyPhone.focus();
+        applyPhone.setAttribute("aria-invalid", "true");
+        return false;
+    }
+    if(phone.length < 11){
+        applyError.textContent = "핸드폰번호 형식에 맞게 압력해주세요";
+        applyPhone.focus();
+        applyPhone.setAttribute("aria-invalid", "true");
+        return false;
+    }
+    if(date == ""){
+        applyError.textContent = "훈련일자를 입력해주세요";
+        applyDate.focus();
+        applyDate.setAttribute("aria-invalid", "true");
+        return false;
+    }
+
+    if(date.length < 8){
+        applyError.textContent = "훈련일자 형식을 지켜주세요";
+        applyDate.focus();
+        applyDate.setAttribute("aria-invalid", "true");
+        return false;
+    }
+
+    applyError.textContent = "";
+  return true;
+}
+restartApplyButton.addEventListener("click", () => {
+    applyStep(0);
+    form.reset();
+    applyName.removeAttribute("aria-invalid");
+    applyPhone.removeAttribute("aria-invalid");
+    applyDate.removeAttribute("aria-invalid");
+    submitStatus.textContent = "";
+    
+});
+
+function qnaText() {
+    const value = document.querySelector('input[name="hard-radio"]:checked').value;
+    const open = applyHard.checked;
+    if(open){
+        return value;
+    }else{
+        return open ? value : "포함 안 함";
+    }
+    
+}

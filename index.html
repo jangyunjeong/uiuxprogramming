@@ -218,6 +218,66 @@
             </div>
         
         </section>
+        
+        <section id="practice-apply" class="practice-apply">
+            <h2>훈련소식을 이메일로 받아보셨나요?</h2>
+            <h2>훈련 신청을 원하시면 신청서 작성을 해주세요.</h2>
+            <p class="progress-apply" aria-label="실행진행단계">
+                <span class="progress_apply_item">1-정보입력</span>
+                <span class="progress_apply_item">2-입력확인</span>
+                <span class="progress_apply_item">3-신청완료</span>
+            </p>
+            <form id="apply-form" novalidate>
+                <section class="apply-step" data-step="1">
+                    <div id="ss">
+                        <label for="apply-name">신청자 이름</label>
+                        <input id="apply-name" type="text" placeholder=" " aria-describedby="apply-error" maxlength="3"><br>
+                        <label for="apply-phone">핸드폰 번호</label>
+                        <input id="apply-phone" type="text" placeholder=" - 없이 입력 " aria-describedby="apply-error" maxlength="11"><br>
+                        <label for="apply-date">훈련날짜</label>
+                        <input id="apply-date" type="text" placeholder="YYYYMMDD " aria-describedby="apply-error" maxlength="8"><br>
+                        <div class="field practice-field">
+                            <label class="check-row" for="apply-hard">
+                            <input id="apply-hard" type="checkbox" name="apply-hard" value="included" aria-controls="practice-option" aria-expanded="false">
+                            <span><strong>훈련 난이도 선택</strong></span></label>
+                            <fieldset id="hard-options" class="practice-options" hidden>
+                                <legend>난이도 선택</legend>
+                                <div class="inline-options">
+                                    <label><input type="radio" name="hard-radio" value="상"> 상</label>
+                                    <label><input type="radio" name="hard-radio" value="중"> 중</label>
+                                    <label><input type="radio" name="hard-radio" value="하" checked> 하</label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                        <p id="apply-error" class="apply-error-message" aria-live="polite"></p>
+                        <div class="apply-actions">
+                        <button id="apply-next" type="button">입력내용확인</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="apply-step" data-step="2" hidden>
+                    <h3>입력한 내용을 확인해주세요</h3>
+                    <div class="summary-apply-list">
+                        <div><span>신청자이름</span><strong id="summary-name"></strong></div>
+                        <div><span>핸드폰번호</span><strong id="summary-phone"></strong></div>
+                        <div><span>신청날짜</span><strong id="summary-date"></strong></div>
+                        <div><span>난이도</span><strong id="summary-hard"></strong></div>
+
+                    </div>
+                    <p id="submit-status" class="submit-status" role="status" aria-live="polite"></p>
+                    <div class="apply-actions">
+                        <button id="summary-apply-prev" type="button">수정하기</button>
+                        <button id="submit-button" type="submit">제출하기</button>
+                    </div>
+                </section>
+                <section class="apply-step" data-step="3" hidden>
+                    <h3>훈련 신청이 완료 되었습니다.</h3>
+                    <button id="restart-apply-button" type="button">새 훈련 신청하기</button>
+                </section>
+            </form>
+        </section>
         <dialog id="feedBack-dialog">
             <h2>입력한 내용 확인</h2>
             <div class="feedBackList">

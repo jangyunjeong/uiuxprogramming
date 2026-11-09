@@ -407,6 +407,14 @@ body.dark .training-flow{
 
 }
 
+.practice-apply{
+    padding: 24px;
+    border: 1px solid #deddea;
+    border-radius: 24px;
+    background-color: #ffffff;
+    justify-content: flex-end;
+
+}
 #feedBack-dialog{
     width: min(520px,calc(100% - 32px));
     max-width: none;
@@ -445,8 +453,54 @@ body.dark .training-flow{
 
 }
 
+.practice-apply .progress_apply_item.is-active{
+    color: #635bff;
+    font-weight: 800;
+
+}
+
+.apply-step .apply-error-message{
+    min-height: 24px;
+    color:#9d243d;
+    font-weight: 700;
+
+}
+
+.apply-step { margin-top: 20px;}
+.practice-apply input[type="text"][aria-invalid="true"] { border-color: #9d243d; }
 
 #feedBack-dialog::backdrop{background: rgb(30,20,39, .6);}
+
+.practice-apply #ss{
+    flex-direction: column;
+     gap:10px;
+     display: flex;
+}
+
+.apply-step .summary-apply-list > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid #deddea;
+
+}
+
+.apply-step{
+    width: 100%;
+}
+
+
+ .apply-actions{
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.submit-status{
+    font-weight: 700;
+}
 /* 웹 페이지가 표시되는 가로폭이 768 알때만 적용*/
 @media (max-width:768px) {
 
@@ -511,7 +565,9 @@ body.dark .training-flow{
     }
     .training-flow{padding:20px}
     #recording-dialog .dialog-actions{flex-direction: column-reverse;}
+    .apply-actions{flex-direction: column-reverse;}
     #recording-dialog .dialog-actions button{width: 100%;} 
+    .apply-actions button{width: 100%;} 
     .training-flow .step-actions {flex-direction: column-reverse;}
     .training-flow .step-actions button {width: 100%;}
     .training-flow input[type="checkbox"],
@@ -526,6 +582,15 @@ body.dark .training-flow{
 
     .radioDiv{
       display: flex;  
+    }
+
+    .inline-options{
+        display: flex;  
+    }
+    
+    .practice-apply input[type="checkbox"],
+    .practice-apply input[type="radio"]{
+        width: auto;
     }
 }
 
